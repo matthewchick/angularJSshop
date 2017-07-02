@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/angularJSshop.iml
+.idea/modules.xml
+.idea/workspace.xml
+.project
+js/app.js
+css/
+index.html
