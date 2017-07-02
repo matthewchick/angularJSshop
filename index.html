@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/app.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+		<!-- Angular does not know $routeProvider if the following statement is missed -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
         <script src="js/app.js"></script>
     </head>
 	<!--<body ng-init="numOfBooks = 10"> <!-- <ng-init> directive evaluates the given expression
@@ -26,19 +28,25 @@
 
 	<!-- Using angularJS controller, HeaderCtrl => the following header view is a dynamic view -->
     <body>
-
+		<!-- Making header fixed -->
         <div id="headerWrapper" ng-controller="HeaderCtrl">
 			<!-- use $scope object to retrieve data displayed on the template or view -->
             <span class="logo pull-left">{{appDetails.title}}</span>
             <span class="tagline pull-left">{{appDetails.tagline}}</span>
             <div class="nav-wrapper pull-left">
                 <ul class="nav nav-pills">
-                    <li class="active"><a href="#">Books</a></li>
-                    <li><a href="#">Kart</a></li>
+					<!-- add routing for the following statements -->
+                    <li class="active"><a href="#/books">Books</a></li>
+                    <li><a href="#/cart">Cart</a></li>
                 </ul>
             </div>
         </div>
-		
+
+		<!-- create a dynamic view using ng-view directive => can view book-list.html or kart-list.html -->
+		<!-- tell angular to change book-list.html or kart-list.html by using myApp.config(function($routeProvider) { }); -->
+		<div ng-view></div>
+
+		<!-- move bookListWrapper with BookListCtrl to another page
 		<div id="bookListWrapper" ng-controller="BookListCtrl">
 			<form role="form">
 			  <div class="form-group">
@@ -52,7 +60,7 @@
 					ng-repeat="book in books">
 					<!-- <ng-repeat> The ng-repeat directive repeats a set of HTML, a given number of times.
 					     books object inside the $scope is moved to book object -->
-					<div class="book-details clearfix">
+			<!--		<div class="book-details clearfix">
 						<h3>{{book.name}}</h3>
 						<p>{{book.price}}</p>
 						<ul class="list-unstyled list-inline">
@@ -68,6 +76,8 @@
 			</ul>
 			</div>
         </div>
+		-->
+
 		<!-- before using angularJS => The following is a static view => move BookKart and We have 1 .. into controller inside app.js
         <div id="header-wrapper">
             <span class="logo pull-left">BookKart</span>
